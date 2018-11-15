@@ -60,7 +60,10 @@ class Actor {
     } else if (item === undefined) {
       throw new Error('Объект не может быть пустым')
     }
-    return !((item.left >= this.right) || (item.right <= this.left) || (item.top >= this.bottom) || (item.bottom <= this.top));
+    return !((item.left >= this.right) 
+      || (item.right <= this.left) 
+      || (item.top >= this.bottom) 
+      || (item.bottom <= this.top));
   }
 }
 
@@ -86,9 +89,9 @@ class Level {
       throw new Error('Объект не может быть пустым')
     }
     if (this.actors === undefined || this.actors.length === 1) {
-      return undefined;
+      return;
     }
-    else return this.actors.find(actor => actor.isIntersect(player));
+  return this.actors.find(actor => actor.isIntersect(player));
   }
 
   obstacleAt(pos, size) {
@@ -162,7 +165,8 @@ class LevelParser {
   }
 
   createGrid(plan) {
-    return plan.map(line => line.split('')).map(line => line.map(line => this.obstacleFromSymbol(line)));
+    return plan.map(line => line.split('')).map(line => 
+      line.map(line => this.obstacleFromSymbol(line)));
   }
 
 
